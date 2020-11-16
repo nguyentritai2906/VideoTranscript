@@ -46,7 +46,6 @@ def silence_based_conversion(inputfile, outputfile):
         # export audio chunk and save it in
         # the `folder_name` directory.
         chunk_filename = os.path.join(folder_name, f"chunk{i}.wav")
-        #  print("Saving chunk{0}.wav".format(i))
         audio_chunk.export(chunk_filename, format="wav")
         # recognize the chunk
         print("Recognizing chunk "+str(i)+"/"+str(len(chunks)))
@@ -58,7 +57,6 @@ def silence_based_conversion(inputfile, outputfile):
             except sr.UnknownValueError as e:
                 print("Error:", str(e))
             else:
-                #  text = f"{text.capitalize()}. "
                 print(text)
                 fh.write(text)
 
@@ -80,51 +78,14 @@ if __name__ == '__main__':
     if filename[-3:] == "wav":
         silence_based_conversion(filename, filename[:-3] + "txt")
     else:
-        # Convert video to audio
+        # convert video to audio
 
-        # Insert Local Video File Path
+        # insert Local Video File Path
         clip = VideoFileClip(filename)
 
-        # Insert Local Audio File Path
+        # insert Local Audio File Path
         clip.audio.write_audiofile(filename[:-3] + "wav")
 
         silence_based_conversion(
             filename[:-3] + "wav", filename[:-3] + "txt")
     print("Done!")
-
-    # for filename in sys.argv[1:]:
-    #     print("Processing", filename)
-
-    #     if filename[-3:] == "wav":
-    #         silence_based_conversion(filename, filename[:-3] + "txt")
-    #     else:
-    #         # Convert video to audio
-
-    #         # Insert Local Video File Path
-    #         clip = VideoFileClip(filename)
-
-    #         # Insert Local Audio File Path
-    #         clip.audio.write_audiofile(filename[:-3] + "wav")
-
-    #         silence_based_conversion(
-    #             filename[:-3] + "wav", filename[:-3] + "txt")
-    #     print("Done!")
-
-# def run(files):
-#     for filename in files:
-#         print("Processing", filename)
-
-#         if filename[-3:] == "wav":
-#             silence_based_conversion(filename, filename[:-3] + "txt")
-#         else:
-#             # Convert video to audio
-
-#             # Insert Local Video File Path
-#             clip = VideoFileClip(filename)
-
-#             # Insert Local Audio File Path
-#             clip.audio.write_audiofile(filename[:-3] + "wav")
-
-#             silence_based_conversion(
-#                 filename[:-3] + "wav", filename[:-3] + "txt")
-#         print("Done!")
